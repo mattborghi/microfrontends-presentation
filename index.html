@@ -1,40 +1,299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>reveal.js</title>
+    <title>MicroFrontends using bit.dev</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/moon.css" id="theme" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+      id="highlight-theme"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>MicroFrontends using bit.dev</h1>
+          <!-- <div class="r-stretch"></div> -->
+		  <div style="height: 5em;"></div>
+          <h4>Matias Borghi</h4>
+        </section>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+        <section>
+          <h1>How did we start?</h1>
+          <figure
+            class="r-stretch"
+            style="
+              border: 2px dashed transparent;
+              max-width: 300px;
+              margin: auto;
+            "
+          >
+            <img src="./examples/assets/new.svg" height="400px" />
+            <figcaption
+              style="color: rgb(194, 129, 9); font-size: 40px; font-weight: 700"
+            >
+              Monolith UI
+            </figcaption>
+          </figure>
+        </section>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+        <section>
+          <div class="container">
+            <div class="col">
+              <h2>Pros</h2>
+              <ul style="font-size: xx-large">
+                <li>All the code in the same place</li>
+                <li>Quick to start developing and testing</li>
+              </ul>
+            </div>
+
+            <div class="col">
+              <h2>Cons</h2>
+              <ul style="font-size: xx-large">
+                <li>
+                  May lead to <strong>repetitive code</strong> usage which then
+                  turns into slow development
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Use Cases</h2>
+          <ol>
+            <li>
+              Same-template blogs arose to repetitive (boring) code even for
+              minor changes and bugs
+            </li>
+            <li>
+              What happens if we want to implement multiple sites that use
+              similar UI (headers, buttons, footers)?
+            </li>
+          </ol>
+          <blockquote class="fragment">
+            We don't want to <strong>repeate</strong> the code and
+            <strong>reinvent</strong> the wheel each time
+          </blockquote>
+        </section>
+
+        <section>
+          <h4>Example: Spotify</h4>
+          <img
+            src="https://static.bit.dev/lp-assets/reusable-component-illustration.svg"
+          />
+        </section>
+
+        <section>
+          <h4>
+            Example: Imagine finding a bug or wanting to do an improvement on a
+            header.
+          </h4>
+
+          <iframe
+            class="r-stretch"
+            data-src="https://gatsby-casper.netlify.app/"
+          ></iframe>
+        </section>
+
+        <section>
+          <h4>
+            Example: Imagine finding a bug or wanting to do an improvement on a
+            header.
+          </h4>
+
+          <img src="examples/assets/site.svg" />
+        </section>
+
+        <section>
+          <h3>Solution 💡</h3>
+          <blockquote>
+            <!-- style="border-radius:1em;" -->
+            <h3 style="color: orange">MicroFrontends using bit.dev</h3>
+          </blockquote>
+          <p class="fragment">
+            WebDev today allows us to think our app as a
+            <span style="font-weight: 900; font-size: larger"
+              >composition of resusable components</span
+            >.
+          </p>
+          <p class="fragment">
+            Beak monolithic project into
+            <span style="font-size: 30px">smaller</span>, more manageable
+            pieces, which are
+            <strong>independently developed and owned</strong> by resepective
+            teams, with the power to build and ship simultaneously.
+          </p>
+        </section>
+
+        <section>
+          <h5>How does an example header could be decomposed?</h5>
+          <img src="https://miro.medium.com/max/589/0*XYA-r_yyeGlqkvQQ" />
+        </section>
+
+        <section>
+          <h5>...And a whole webpage?</h5>
+          <img
+            width="80%"
+            src="https://static.bit.dev/homepage-bit/assets/booking-breakdown.png"
+          />
+        </section>
+
+        <section>
+          <h5>So, what now?</h5>
+          <blockquote>
+            Just <span style="text-decoration: underline">import</span> the
+            files!
+          </blockquote>
+
+          <div class="r-stack">
+            <p class="fragment fade-out">
+              Everyone works together, delivering independently.
+            </p>
+            <p class="fragment current-visible">
+              Speed up development and improve application quality
+            </p>
+            <div class="fragment">
+              <p>
+                ~75% decrement in site building while keeping design consistent
+              </p>
+              <p>
+                Independently version, build, test, package and publish each of
+                their components
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h4>All the components in one place</h4>
+          <img
+            src="https://miro.medium.com/max/1250/1*M28IpX4-_1uhibsB45gQrQ.png"
+          />
+        </section>
+
+        <section>
+          <h4>Example: Radio component</h4>
+          <img
+            src="https://miro.medium.com/max/1250/1*vXvrin8ETHpemo67kcc7-Q.png"
+          />
+        </section>
+
+
+		<section
+          data-background-iframe="http://fast.wistia.net/embed/iframe/y5fx5pvsg2"
+          data-background-interactive
+        >
+        </section>
+
+		<section
+          data-background-iframe="http://fast.wistia.net/embed/iframe/1woul6pjyq"
+          data-background-interactive
+        >
+        </section>
+
+		<!-- <section>
+			<h3>Slide 2</h3>
+			<iframe
+			  class="r-stretch"
+			  data-src="http://fast.wistia.net/embed/iframe/1woul6pjyq"
+			></iframe>
+		  </section> -->
+
+        <section>
+          <h4>Development at bit.dev</h4>
+          <p>
+            <span style="text-decoration: underline"
+              >Frontend infrastracture team</span
+            >: maintain bit.dev plataform's basic set of components. Composed by
+            a designer, a PM and SH.
+          </p>
+          <p>
+            <span style="text-decoration: underline">Component Search team</span
+            >: responsible for complex search feature on bit.dev. Composed by a
+            few devs, one NLP researcher and a PM.
+          </p>
+          <p>
+            <span style="text-decoration: underline"
+              >Component Discovery team</span
+            >: build the components used to document, visualize and interact
+            with the components shared on the bit.dev platform. Composed by
+            part-time designer, part-time PM and a few devs.
+          </p>
+        </section>
+
+        <section>
+          <h4>Development at bit.dev</h4>
+          <img src="examples/assets/teams.jpeg" />
+        </section>
+
+        <section>
+          <h3>Conclusion</h3>
+          <p>
+            MicroFrontends is a better way to improve the way we work, build
+            better modular software and deliver faster and more often
+          </p>
+          <blockquote
+            style="width: fit-content"
+            cite="https://blog.bitsrc.io/how-we-build-micro-front-ends-d3eeeac0acfc"
+          >
+            &ldquo; For small teams, adopting a flexible and scalable
+            architecture will improve their ability to grow, rapidly add new
+            features, onboard new people, and focus on core technology and
+            innovation instead of on less important things. .&rdquo;
+          </blockquote>
+        </section>
+
+        <section>
+          <h3>Conclusion</h3>
+          <blockquote>
+            <p>Where are we now with all these?</p>
+            <h5>
+              <span style="text-decoration: underline; color: orange"
+                >Migration Process</span
+              >
+            </h5>
+          </blockquote>
+          <img src="https://miro.medium.com/max/875/0*s9T4NmDAvHOwVCG7" />
+        </section>
+
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+    <style>
+      .container {
+        display: flex;
+      }
+      .col {
+        flex: 1;
+      }
+    </style>
+  </body>
 </html>
