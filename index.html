@@ -107,7 +107,7 @@
               similar UI (headers, buttons, footers)?
             </li>
           </ol>
-          <blockquote class="fragment">
+          <blockquote class="fragment" style="margin-top: 1em">
             We don't want to <strong>repeate</strong> the code and
             <strong>reinvent</strong> the wheel each time
           </blockquote>
@@ -116,6 +116,7 @@
         <section>
           <h4>Example: Spotify</h4>
           <img
+            height="500px"
             src="https://static.bit.dev/lp-assets/reusable-component-illustration.svg"
           />
         </section>
@@ -172,7 +173,69 @@
           />
         </section>
 
-        <section>
+        <section data-auto-animate>
+          <h4>So, how do we use it?</h4>
+          <blockquote>
+            Just
+            <span style="text-decoration: underline; color: orange"
+              >import</span
+            >
+            the components!
+          </blockquote>
+
+          <pre
+            style="height: 500px"
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2-15|19"><script type="text/template">
+						import React, { useState } from 'react';
+      import { Button, Typography } from '@material-ui/core';
+
+      function Example() {
+          const [count, setCount] = useState(0);
+
+          return (
+              <div>
+                  <p>You clicked {count} times</p>
+                  <Button onClick={() => setCount(count + 1)}>
+                      <Typography>Click me</Typography>
+                  </Button>
+              </div>
+          );
+      }
+
+      function Main() {
+          return (
+              <Example />
+          )
+      }
+					</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
+          <h4>So, how do we use it?</h4>
+          <blockquote>
+            Just
+            <span style="text-decoration: underline; color: orange"
+              >import</span
+            >
+            the components!
+          </blockquote>
+
+          <pre
+            data-id="code-animation"
+          ><code class="hljs" data-trim data-line-numbers="2,6"><script type="text/template">
+						import React, { useState } from 'react';
+      import { Example } from '@bit/owner.namespace.example';
+
+      function Main() {
+          return (
+              <Example />
+          )
+      }
+					</script></code></pre>
+        </section>
+
+        <section data-auto-animate>
           <h4>So, how do we use it?</h4>
           <blockquote>
             Just
@@ -186,7 +249,7 @@
             <p class="fragment fade-out">
               Everyone works together, delivering independently.
             </p>
-            <p class="fragment current-visible">
+            <p class="fragment fade-in-then-out">
               Speed up development and improve application quality
             </p>
             <div class="fragment">
